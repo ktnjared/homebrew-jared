@@ -21,52 +21,9 @@ env:
   HOMEBREW_GITHUB_PACKAGES_TOKEN: ${{ github.token }}
   HOMEBREW_GITHUB_PACKAGES_USER: ${{ github.actor }}
 
-  FORMULAE: >
-    bbdown
-    chatgpt-cli
-    ddns-go
-    music-dl
-    music-player
-    shurl
-    vtm
+  # FORMULAE: >
   CASKS: >
-    alist-desktop
-    amazon-corretto-8
-    basictex-cn
-    blender-cn
-    chatgpt
-    clash-verge
-    eshelper
-    freecad-cn
-    gimp-cn
-    goldendict-ng
-    gopeed
-    gridplayer
-    hapigo
-    i4tools
-    iina-cn
-    inkscape-cn
-    julia-cn
-    libreoffice-cn
-    linkease
-    lyx-cn
-    m3u8-downloader
-    mambaforge-cn
-    messauto
-    miniforge-cn
-    obs-cn
-    openai-translator
-    openstudio
-    pareto-security
-    pot-desktop
-    qt-creator-cn
-    texstudio-cn
-    ting-en
-    ting-es
-    ting-fr
-    vlc-cn
-    vscodium-cn
-    yank-note
+    pixel-perfect
 
 permissions:
   contents: read
@@ -74,19 +31,19 @@ permissions:
 jobs:
   job1:
     name: Test Casks
-    if: github.repository == 'ivaquero/homebrew-chinese'
+    if: github.repository == 'ktnjared/homebrew-ktnjared'
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [macos-12, macos-11]
+        os: [macos-latest]
 
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: ivaquero/homebrew-chinese
+          repository: ktnjared/homebrew-ktnjared
           ref: main
-          path: homebrew-chinese
+          path: homebrew-jared
 
       - name: Set up Homebrew
         id: set-up-homebrew
@@ -101,7 +58,7 @@ jobs:
 
       - name: Add Tap
         run: |
-          brew tap ivaquero/chinese
+          brew tap ktnjared/ktnjared
 
       - name: Bump formulae
         uses: Homebrew/actions/bump-packages@master
@@ -116,42 +73,3 @@ jobs:
         with:
           token: ${{ env.HOMEBREW_GITHUB_API_TOKEN }}
           casks: ${{ github.event.inputs.casks || env.CASKS }}
-
-  job2:
-    name: Test Formulae
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-22.04, ubuntu-20.04]
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: ivaquero/homebrew-chinese
-          ref: main
-          path: homebrew-chinese
-
-      - name: Set up Homebrew
-        id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
-        with:
-          core: true
-          cask: false
-          test-bot: false
-
-      - name: Add Tap
-        run: |
-          brew tap ivaquero/chinese
-
-      - name: Configure Git user
-        uses: Homebrew/actions/git-user-config@master
-        with:
-          username: ${{ (github.event_name == 'workflow_dispatch' && github.actor) || 'BrewTestBot' }}
-
-      - name: Bump formulae
-        uses: Homebrew/actions/bump-packages@master
-        continue-on-error: true
-        with:
-          token: ${{ env.HOMEBREW_GITHUB_API_TOKEN }}
-          formulae: ${{ env.FORMULAE }}
