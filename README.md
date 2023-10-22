@@ -13,6 +13,8 @@ Third-party projects that aren't in Homebrew yet. In most (all?) cases, PRs have
 
 | Name | Blurb | Install |
 | ---- | ----- | ------- |
+| [Aseprite][aseprite] | Animated Sprite Editor & Pixel Art Tool | `brew install --cask `|
 | [Pixel Perfect][pixel-perfect] | Increase the text size of iPhone and iPad apps on Mac. | `brew install --cask pixel-perfect` |
 
+[aseprite]:https://www.aseprite.org/
 [pixel-perfect]:https://github.com/cormiertyshawn895/PixelPerfect
