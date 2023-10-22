@@ -39,7 +39,7 @@ jobs:
         os: [macos-latest]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           repository: ktnjared/homebrew-ktnjared
           ref: main
