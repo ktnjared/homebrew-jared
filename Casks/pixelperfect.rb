@@ -14,12 +14,14 @@ cask "pixelperfect" do
   1. Open System Settings
   2. Choose Privacy & Security
   3. Scroll down to Security
-  4. You should see a section stating: "PixelPerfect" was blocked to protect your Mac.
+  4. You should see a section stating: 
+         - "PixelPerfect" was blocked to protect your Mac.
   5. Click the "Open Anyway" button.
   6. Restart PixelPerfect.
   7. Upon launching, you will need to grant Full Disk Access permissions to PixelPerfect.
   8. Stil on Privacy & Security, in System Settings, scroll up and choose Full Disk Access.
-  9. Turn on the preference for PixelPerfect. You will be prompted for Touch ID or administrator password.
+  9. Turn on the preference for PixelPerfect. 
+         - You will be prompted for Touch ID or administrator password.
   EOS
 
   livecheck do
